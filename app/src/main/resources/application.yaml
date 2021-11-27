@@ -1,0 +1,9 @@
+server:
+  port: 8100
+  servlet:
+    context-path: /app
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
