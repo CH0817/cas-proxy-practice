@@ -15,13 +15,14 @@
         <java.version>1.8</java.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <spring.boot-version>2.4.6</spring.boot-version>
-        <spring.cloud-version>2020.0.3</spring.cloud-version>
+        <spring.boot-version>2.3.12.RELEASE</spring.boot-version>
+        <spring.cloud-version>Hoxton.SR12</spring.cloud-version>
     </properties>
 
     <modules>
         <module>app</module>
         <module>proxy</module>
+        <module>zuul</module>
     </modules>
 
     <dependencyManagement>
