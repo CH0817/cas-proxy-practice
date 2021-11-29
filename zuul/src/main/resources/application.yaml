@@ -1,0 +1,13 @@
+server:
+  port: 8300
+zuul:
+  routes:
+    app:
+      url: http://localhost:8100/app
+      path: /app/**
+      stripPrefix: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
