@@ -13,21 +13,21 @@
     APP2 response:<br>
 </div>
 <hr>
-<a th:href="@{http://localhost:8110/app1}">To APP1</a>
-<br>
-<a th:href="@{http://localhost:8120/app2}">To APP2</a>
-<br>
-<button onclick="requestToApp1()">request to APP1</button>
-<br>
-<button onclick="requestToApp2()">request to APP2</button>
-<br>
-<form th:action="@{/logout}">
-    <button type="submit">logout</button>
-</form>
+<div>
+    <button onclick="requestProxyToApp1()">proxy request to APP1</button>
+    <br>
+    <button onclick="requestProxyToApp2()">proxy request to APP2</button>
+</div>
+<hr>
+<!--<div>-->
+<!--    <form th:action="@{/logout}">-->
+<!--        <button type="submit">logout</button>-->
+<!--    </form>-->
+<!--</div>-->
 <script>
-    function requestToApp1() {
+    function requestProxyToApp1() {
         $.ajax({
-            url: 'http://localhost:8110/app1/tester/test',
+            url: 'http://localhost:8300/zuul/app1/tester/test',
             type: 'POST',
             xhrFields: {
                 withCredentials: true
@@ -38,9 +38,9 @@
         });
     }
 
-    function requestToApp2() {
+    function requestProxyToApp2() {
         $.ajax({
-            url: 'http://localhost:8120/app2/tester/test',
+            url: 'http://localhost:8300/zuul/app2/tester/test',
             type: 'POST',
             xhrFields: {
                 withCredentials: true

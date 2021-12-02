@@ -10,21 +10,23 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>proxy</artifactId>
+    <artifactId>front</artifactId>
     <packaging>jar</packaging>
-    <name>proxy</name>
-    <description>proxy</description>
+    <name>front</name>
+    <description>front</description>
 
     <dependencies>
-        <!--spring cloud-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-gateway</artifactId>
-        </dependency>
-        <!--spring security-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>jquery</artifactId>
         </dependency>
     </dependencies>
 

@@ -23,7 +23,7 @@
 
     <modules>
         <module>app</module>
-        <module>proxy</module>
+        <module>front</module>
         <module>zuul</module>
     </modules>
 

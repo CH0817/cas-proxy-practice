@@ -1,10 +1,16 @@
 server:
   port: 8300
+  servlet:
+    context-path: /zuul
 zuul:
   routes:
-    app:
-      url: http://localhost:8100/app
-      path: /app/**
+    app1:
+      url: http://localhost:8110/app1
+      path: /app1/**
+      stripPrefix: true
+    app2:
+      url: http://localhost:8120/app2
+      path: /app2/**
       stripPrefix: true
 management:
   endpoints:

@@ -1,13 +1,13 @@
-package tw.com.rex.casproxypractice.proxy;
+package tw.com.rex.casproxypractice.front;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ProxyApplication {
+public class FrontApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ProxyApplication.class, args);
+        SpringApplication.run(FrontApplication.class, args);
     }
 
 }

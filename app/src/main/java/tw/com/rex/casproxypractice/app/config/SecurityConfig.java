@@ -69,6 +69,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // 允許跨域請求的 client url
         configuration.setAllowedOrigins(Arrays.asList("http://localhost:8110",
                                                       "http://localhost:8120",
+                                                      "http://localhost:8200",
                                                       "http://localhost:8300"));
         // 允許跨域請求的 method
         configuration.setAllowedMethods(Collections.singletonList("*"));
