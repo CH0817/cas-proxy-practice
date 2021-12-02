@@ -3,12 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <title>APP</title>
+    <script th:src="@{/webjars/jquery/3.6.0/dist/jquery.min.js}"></script>
 </head>
 <body>
-Hello APP
+<div id="app1">
+    APP1 response:<br>
+</div>
+<div id="app2">
+    APP2 response:<br>
+</div>
+<hr>
+<a th:href="@{http://localhost:8110/app1}">To APP1</a>
+<br>
+<a th:href="@{http://localhost:8120/app2}">To APP2</a>
+<br>
+<button onclick="requestToApp1()">request to APP1</button>
+<br>
+<button onclick="requestToApp2()">request to APP2</button>
 <br>
 <form th:action="@{/logout}">
     <button type="submit">logout</button>
 </form>
+<script>
+    function requestToApp1() {
+        $.ajax({
+            url: 'http://localhost:8110/app1/tester/test',
+            type: 'POST',
+            xhrFields: {
+                withCredentials: true
+            },
+            success: (data) => {
+                $('#app1').append(data + '<br>');
+            }
+        });
+    }
+
+    function requestToApp2() {
+        $.ajax({
+            url: 'http://localhost:8120/app2/tester/test',
+            type: 'POST',
+            xhrFields: {
+                withCredentials: true
+            },
+            success: (data) => {
+                $('#app2').append(data + '<br>');
+            }
+        });
+    }
+</script>
 </body>
 </html>

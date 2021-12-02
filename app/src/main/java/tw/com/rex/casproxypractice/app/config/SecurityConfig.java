@@ -23,8 +23,13 @@ import org.springframework.security.core.userdetails.AuthenticationUserDetailsSe
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.logout.LogoutFilter;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import javax.servlet.Filter;
+import java.util.Arrays;
+import java.util.Collections;
 
 @RequiredArgsConstructor
 @Configuration
@@ -44,7 +49,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/actuator/prometheus").permitAll().and()
+        http.cors().configurationSource(corsConfigurationSource()).and()
+            .csrf().disable()
+            .authorizeRequests().antMatchers("/actuator/prometheus").permitAll().and()
             .authorizeRequests().anyRequest().authenticated().and()
             .exceptionHandling().authenticationEntryPoint(casAuthenticationEntryPoint()).and()
             .addFilter(casAuthenticationFilter())
@@ -55,6 +62,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) {
         web.ignoring().antMatchers("/js/**", "webjars/**");
+    }
+
+    private CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        // 允許跨域請求的 client url
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:8110",
+                                                      "http://localhost:8120",
+                                                      "http://localhost:8300"));
+        // 允許跨域請求的 method
+        configuration.setAllowedMethods(Collections.singletonList("*"));
+        // 允許跨域請求的 header
+        configuration.setAllowedHeaders(Collections.singletonList("*"));
+        // 是否允許請求帶有驗證訊息
+        configuration.setAllowCredentials(true);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 
     @Bean
