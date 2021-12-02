@@ -1,0 +1,4 @@
+server:
+  port: 8120
+  servlet:
+    context-path: /app2
